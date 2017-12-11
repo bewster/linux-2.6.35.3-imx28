@@ -119,7 +119,7 @@ if [ ! -e /dev/$2$3 ] ; then
   echo "Error: Requested partition does not exist"
   exit 1
 fi
-if [ `sudo fdisk -lu /dev/$2 | awk '$5==53 {print $1}'` != "/dev/$2$3" ]  ; then
+if [ `sudo fdisk -lu /dev/$2 | awk 'BEGIN{nores=1;} $5==53 { print $1; nores=0; } END{if (nores) print "Err";}'` != "/dev/$2$3" ]  ; then
   echo "Error: requested partition /dev/$2$3 does not have ID 53"
   echo "Please make sure requested partition has the correct datatype"
   exit 1
