@@ -1,0 +1,44 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Kernel",
+            "type": "shell",
+            "command": "docker",
+            "args": [
+                "run",
+                "-it",
+                "--label",
+                "com.microsoft.created-by=visual-studio-code",
+                "-v",
+                "${workspaceFolder}:/workspace:rw",
+                "bewster/cross-compiler-linux-2.6.35.3-imx28",
+                "/workspace/docker/build.sh"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$gcc",
+            "detail": "ms-azuretools.vscode-docker doesn't seem to offer any options to output to the terminal, so manually calling docker run."
+        },
+        {
+            "label": "SILENTLY Build Kernel",
+            "type": "docker-run",
+            "dockerRun": {
+                "image": "bewster/cross-compiler-linux-2.6.35.3-imx28",
+                "volumes": [
+                    {
+                        "localPath": "${workspaceFolder}",
+                        "containerPath": "/workspace",
+                        "permissions": "rw"
+                    }
+                ],
+                "command": "/workspace/docker/build.sh",
+            },
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "ms-azuretools.vscode-docker runs detached by default, so build needs to be monitored through container logs."
+        }
+    ]
+}

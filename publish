@@ -52,13 +52,4 @@ mkdir $LOCALPATH &&\
   else
     echo "U-Boot kernel does not exist, skipping"
   fi
-) &&\
-
-{
-  echo "Publishing $LOCALPATH to $1"
-  rsync --recursive $LOCALPATH $1
-  if [ $? -ne "0" ] ; then
-    echo "Failed to failed to publish to $1"
-    exit 1
-  fi
-}
+)

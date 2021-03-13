@@ -49,6 +49,7 @@ modules.builtin
 #
 !.gitignore
 !.mailmap
+!.vscode
 
 #
 # Generated include files
@@ -77,3 +78,10 @@ GTAGS
 *.orig
 *~
 \#*#
+
+# post-make files
+initramfs.cpio
+compat-drivers-3.8.3-2-snpu/Module.symvers
+compat-drivers-3.8.3-2-snpu/modules
+docker/buildlog.txt
+publish_*/

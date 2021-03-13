@@ -9,3 +9,4 @@ initramfs.cpio.gz
 *.map
 zImage
 u-boot
+imx28_ivt_linux.spi
