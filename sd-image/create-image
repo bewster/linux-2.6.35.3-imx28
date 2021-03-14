@@ -1,0 +1,34 @@
+#!/bin/bash
+
+PUBLISH_VERSION=../publish.version
+if [ ! -f "$PUBLISH_VERSION" ]; then
+  echo "Image has not been previously published."
+  exit 1
+fi
+
+export PUBLISH_PATH=../$(cat "$PUBLISH_VERSION")
+
+if [[ -z "${PUBLISH_PATH}" ]]; then
+  echo "Publish path is not provided"
+  exit 1
+fi
+
+if [ ! -d $PUBLISH_PATH ]; then
+  echo "Publish path does not exist!"
+  exit 1
+fi
+
+SD_IMAGE=ts4600_7600-latest-4GB.dd.bz2
+if [ ! -f "$SD_IMAGE" ]; then
+  echo "Download latest manufacturers SD image"
+  wget https://files.embeddedarm.com/ts-arm-sbc/ts-7600-linux/binaries/ts-images/ts4600_7600-latest-4GB.dd.bz2
+else
+  echo "latest manufacturers SD image already exists"
+fi
+
+./prep_customer_image $SD_IMAGE
+if [ "$?" != "0" ]; then exit 1; fi
+
+echo "Moving SD image to $PUBLISH_PATH"
+mv $SD_IMAGE $PUBLISH_PATH
+mv $SD_IMAGE.md5 $PUBLISH_PATH

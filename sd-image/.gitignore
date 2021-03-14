@@ -1,0 +1,6 @@
+mount_point/
+*.dd
+*.dd.md5
+*.dd.bz2
+*.dd.bz2.md5
+buildlog.txt

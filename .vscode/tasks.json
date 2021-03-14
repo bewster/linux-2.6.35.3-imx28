@@ -39,6 +39,14 @@
             "group": "build",
             "problemMatcher": [],
             "detail": "ms-azuretools.vscode-docker runs detached by default, so build needs to be monitored through container logs."
+        },
+        {
+            "label": "Create SD Card Image",
+            "type": "shell",
+            "command": "sudo ${workspaceFolder}/sd-image/build-sd-image.sh",
+            "group": "none",
+            "problemMatcher": [],
+            "detail": "Downloads the latest manufacturing image and replaces the kernel."
         }
     ]
 }

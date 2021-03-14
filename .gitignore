@@ -85,3 +85,4 @@ compat-drivers-3.8.3-2-snpu/Module.symvers
 compat-drivers-3.8.3-2-snpu/modules
 docker/buildlog.txt
 publish_*/
+publish.version

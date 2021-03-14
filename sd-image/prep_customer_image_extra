@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [[ -z "${PUBLISH_PATH}" ]]; then
+  echo "Publish path is not provided"
+  exit 1
+fi
+
+if [ ! -d $PUBLISH_PATH ]; then
+  echo "Publish path does not exist!"
+  exit 1
+fi
+
+# Replaces the kernel with the SD image with our custom build.
+echo "Deleting existing kernel"
+rm -rv mount_point/lib/modules/*
+echo "Copying custom kernel"
+cp -av $PUBLISH_PATH/lib/modules/ mount_point/lib/modules/

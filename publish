@@ -52,4 +52,15 @@ mkdir $LOCALPATH &&\
   else
     echo "U-Boot kernel does not exist, skipping"
   fi
+) &&\
+
+(
+  echo "$LOCALPATH" > publish.version
+
+  echo "Creating compressed tarball"
+  cd $LOCALPATH
+  tar cf $LOCALPATH.tar lib
+  bzip2 -z $LOCALPATH.tar
+  md5sum $LOCALPATH.tar.bz2 > $LOCALPATH.tar.bz2.md5
+  cp ../docker/buildlog.txt ./$LOCALPATH-buildlog.txt
 )

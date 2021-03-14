@@ -2,6 +2,12 @@
 
 cd /workspace
 
+if [ -f "publish.version" ]; then
+  echo "Image has been previously published.  Skipping build."
+  echo "NOTE: To build new version, delete the file 'publish.version'"
+  exit 1
+fi
+
 (
   echo "Set the default configuration"
   make ts7600_defconfig
