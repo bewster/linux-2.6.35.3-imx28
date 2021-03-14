@@ -14,4 +14,4 @@ fi
 echo "Deleting existing kernel"
 rm -rv mount_point/lib/modules/*
 echo "Copying custom kernel"
-cp -av $PUBLISH_PATH/lib/modules/ mount_point/lib/modules/
+cp -av $PUBLISH_PATH/lib/modules/ mount_point/lib/
