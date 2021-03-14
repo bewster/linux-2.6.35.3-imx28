@@ -32,3 +32,5 @@ if [ "$?" != "0" ]; then exit 1; fi
 echo "Moving SD image to $PUBLISH_PATH"
 mv $SD_IMAGE $PUBLISH_PATH
 mv $SD_IMAGE.md5 $PUBLISH_PATH
+
+cp buildlog.txt $PUBLISH_PATH/${SD_IMAGE/.dd.bz2/}-buildlog.txt
